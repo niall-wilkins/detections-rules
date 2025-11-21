@@ -1,6 +1,7 @@
 name: "SecOps Rules Verification"
 
 on:
+  workflow_dispatch:
   pull_request:
     branches:
       - main
