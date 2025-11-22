@@ -37,7 +37,7 @@ jobs:
       - uses: google-github-actions/auth@v2
         with:
           project_id: ${{ secrets.GOOGLE_CLOUD_PROJECT_ID }}
-          workload_identity_provider: ${{ secrets.GOOGLE_CLOUD_WORKLOAD_IDENTITY_PROVIDER}}
+          workload_identity_provider: ${{ secrets.WIF_PROVIDER}}
           access_token_lifetime: 180s
           export_environment_variables: true
           create_credentials_file: true
