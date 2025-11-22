@@ -20,11 +20,11 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      LOGGING_LEVEL: ${{ vars.LOGGING_LEVEL }}
-      GOOGLE_SECOPS_API_BASE_URL: ${{ vars.GOOGLE_SECOPS_API_BASE_URL }}
-      GOOGLE_SECOPS_API_UPLOAD_BASE_URL: ${{ vars.GOOGLE_SECOPS_API_UPLOAD_BASE_URL }}
-      GOOGLE_SECOPS_INSTANCE: ${{ vars.GOOGLE_SECOPS_INSTANCE }}
-      AUTHORIZATION_SCOPES: ${{ vars.AUTHORIZATION_SCOPES }}
+      LOGGING_LEVEL: ${{ secrets.LOGGING_LEVEL }}
+      GOOGLE_SECOPS_API_BASE_URL: ${{ secrets.GOOGLE_SECOPS_API_BASE_URL }}
+      GOOGLE_SECOPS_API_UPLOAD_BASE_URL: ${{ secrets.GOOGLE_SECOPS_API_UPLOAD_BASE_URL }}
+      GOOGLE_SECOPS_INSTANCE: ${{ secrets.GOOGLE_SECOPS_INSTANCE }}
+      AUTHORIZATION_SCOPES: ${{ secrets.AUTHORIZATION_SCOPES }}
 
     steps:
       - uses: actions/checkout@v4
@@ -36,7 +36,7 @@ jobs:
 
       - uses: google-github-actions/auth@v2
         with:
-          project_id: ${{ vars.GOOGLE_CLOUD_PROJECT_ID }}
+          project_id: ${{ secrets.GOOGLE_CLOUD_PROJECT_ID }}
           workload_identity_provider: ${{ secrets.GOOGLE_CLOUD_WORKLOAD_IDENTITY_PROVIDER}}
           access_token_lifetime: 180s
           export_environment_variables: true
