@@ -165,10 +165,10 @@ class Rules:
         rule_config_file=rule_config_file, rules_dir=rules_dir
     )
 
-    rule_files = list(rules_dir.glob("*.yaral"))
+    rule_files = list(rules_dir.rglob("*.yaral"))
     non_rule_files = [
         file_path
-        for file_path in rules_dir.rglob("*")
+        for file_path in rules_dir.glob("*")
         if not file_path.name.endswith(".yaral")
     ]
 
