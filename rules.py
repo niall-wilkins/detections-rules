@@ -168,7 +168,7 @@ class Rules:
     rule_files = list(rules_dir.glob("*.yaral"))
     non_rule_files = [
         file_path
-        for file_path in rules_dir.glob("*")
+        for file_path in rules_dir.rglob("*")
         if not file_path.name.endswith(".yaral")
     ]
 
@@ -242,7 +242,7 @@ class Rules:
       return rule_config_parsed
 
     Rules.check_rule_config(rule_config)
-    rule_files = list(rules_dir.glob("*.yaral"))
+    rule_files = list(rules_dir.rglob("*.yaral"))
     rule_file_names = [rule_file_path.stem for rule_file_path in rule_files]
 
     for rule_name, rule_config_entry in rule_config.items():
