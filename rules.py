@@ -285,16 +285,17 @@ class Rules:
     return rule_config_parsed
 
   def dump_rules(self, rules_dir: pathlib.Path = RULES_DIR):
-    """Dump a list of rules to local files."""
-    # Write rules out to .yaral files
+    """Dump a list of rules to local files organized by technology."""
     LOGGER.info("Writing %s rule files to %s", len(self.rules), rules_dir)
     for rule in self.rules:
-      # Use the rule name for the file name.
-      rule_file_path = f"{rules_dir}/{rule.name}.yaral"
-
-      # Dump the rule to a file.
-      with open(rule_file_path, "w", encoding="utf-8") as rule_file:
-        rule_file.write(rule.text)
+        # Determine technology from rule name prefix
+        tech_prefix = rule.name.split("_")[0].upper()
+        tech_dir = rules_dir / tech_prefix
+        tech_dir.mkdir(parents=True, exist_ok=True)
+            rule_file_path = tech_dir / f"{rule.name}.yaral"
+        
+        with open(rule_file_path, "w", encoding="utf-8") as rule_file:
+            rule_file.write(rule.text)
 
   def dump_rule_config(self):
     """Dump the configuration and metadata for a collection of rules."""
