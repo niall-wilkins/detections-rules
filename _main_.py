@@ -80,7 +80,7 @@ class RuleOperations:
 
     # Delete existing local rule files before writing a fresh copy of all rules
     # pulled from Google SecOps
-    for local_rule_file in list(RULES_DIR.glob("*.yaral")):
+    for local_rule_file in RULES_DIR.rglob("*.yaral"):
       local_rule_file.unlink()
 
     remote_rules.dump_rules()
